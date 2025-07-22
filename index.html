@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZDStudios</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZailLozey Hub</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <header>
-    <h1>💠 ZDStudios</h1>
+    <h1>ZailLozey 🚀</h1>
     <nav>
       <ul>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#zail">Zail</a></li>
-        <li><a href="#lozey">Lozey</a></li>
-        <li><button onclick="requestAdminAccess()">Admin</button></li>
+        <li onclick="showSection('home')">Home</li>
+        <li onclick="showSection('products')">Products</li>
+        <li onclick="showSection('zail')">Zail</li>
+        <li onclick="showSection('lozey')">Lozey</li>
+        <li onclick="showAdmin()">Admin</li>
       </ul>
     </nav>
   </header>
 
-  <main id="content">
-    <section id="products"><h2>Our Products</h2></section>
-    <section id="zail"><h2>Zail Zone</h2></section>
-    <section id="lozey"><h2>Welcome to Lozey</h2></section>
-    <section id="admin-view" style="display:none;"></section>
-  </main>
+  <section id="home" class="screen active">
+    <h2>Welcome to ZailLozey</h2>
+    <p>Modern UI playground meets automation magic.</p>
+  </section>
 
-  <script>
-    function requestAdminAccess() {
-      const steps = ['Enter username', 'Enter password', 'Enter OTP'];
-      let authCount = 0;
-      function nextStep() {
-        const input = prompt(steps[authCount]);
-        if (input !== null && input.trim() !== '') {
-          authCount++;
-          if (authCount < steps.length) {
-            nextStep();
-          } else {
-            document.cookie = "zd_admin_auth=true; path=/";
-            window.open("admin.html", "_blank");
-          }
-        }
-      }
-      nextStep();
-    }
-  </script>
+  <section id="products" class="screen">
+    <h2>Product List</h2>
+    <div id="product-area"></div>
+    <button onclick="addProduct()">➕ Add Product</button>
+  </section>
+
+  <section id="zail" class="screen">
+    <h2>Zail Zone</h2>
+    <p>Scripted excellence lives here.</p>
+  </section>
+
+  <section id="lozey" class="screen">
+    <h2>Lozey Land</h2>
+    <p>Creative chaos beautifully modular.</p>
+  </section>
+
+  <section id="admin-container" class="screen">
+    <iframe src="admin-page.html"></iframe>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
